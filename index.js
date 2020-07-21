@@ -12,40 +12,59 @@ console.log('its working');
 (d) Away Team goals for 2014 world cup final
 (e) Winner of 2014 world cup final */
 
+//helper function
 const filter2014 = fifaData.filter(function(item){
     return item.Year == 2014
 })
 console.log(filter2014)
 
+//a
 const filterHome2014 = filter2014.map(function(item){
     return item["Home Team Name"]
 })
 console.log(filterHome2014)
 
+//b
 const filterAway2014 = filter2014.map(function(item){
     return item["Away Team Name"]
 })
 console.log(filterAway2014)
 
+//c
 const filterHomeGoal2014 = filter2014.map(function(item){
     return `${item["Home Team Name"]}: ${item["Home Team Goals"]}`
 })
 console.log(filterHomeGoal2014)
 
+//d
 const filterAwayGoal2014 = filter2014.map(function(item){
     return `${item["Away Team Name"]}: ${item["Away Team Goals"]}`
 })
 console.log(filterAwayGoal2014)
 
-const filterFinal2014 = filter2014.map(function(item){
+// filter final match
+const filterFinal2014 = filter2014.filter(function(item){
     return item.Stage == "Final"
 })
+console.log(filterFinal2014)
+
+// e, find winning team
+const findWinningTeam = filterFinal2014.map(function(item){
+    if (item["Home Team Goals"] > item["Away Team Goals"]){
+        return item["Home Team Name"]
+    } else {
+        return item["Away Team Name"]
+    }
+})
+console.log(findWinningTeam)
+
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
-function getFinals(/* code here */) {
+function getFinals(data) {
 
     /* code here */
+    
 
 };
 
