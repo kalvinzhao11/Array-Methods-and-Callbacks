@@ -198,20 +198,46 @@ console.log(getCountryWins(fifaData, "ITA"))
 function getGoals(data) {
 
     /* code here */
-    // let win = {score: 0}
     
     let avgGoal = []
-    const goals = getFinals(data).forEach(function(item, index){
+    const goals = getFinals(data).forEach(function(item){
         // console.log(item)
-        console.log(avgGoal)
-        if (avgGoal.includes(item["Home Team Initials"])){
-            // console.log("hi")
-            let index = data.indexOf(item["Home Team Initials"])
-            console.log(index)
-        } else {
-            return avgGoal.push([item["Home Team Initials"], item["Home Team Goals"], 0])
+        // console.log(avgGoal)
+        // console.log(item["Home Team Initials"])
+        if (!avgGoal.includes(item["Home Team Initials"])){
+            console.log("hi")
+            avgGoal.push([item["Home Team Initials"], item["Home Team Goals"], 0])
+            avgGoal.push([item["Away Team Initials"], item["Away Team Goals"], 0])
         }
     })
+    console.log(avgGoal)
+    let sortedTeam = avgGoal.sort(function(first, second){
+        if (first[0] === second[0]){
+            return 0
+        } else {
+            return (first[0] < second[0]) ? -1 : 1;
+        }
+    })
+    for (let x in sortedTeam){
+        if (x == 0){
+            continue
+        }
+        if (sortedTeam[x][0] == sortedTeam[x - 1][0]){
+            sortedTeam[x - 1 ][1] += sortedTeam[x][1]
+            sortedTeam[x - 1 ][2] ++
+            console.log(x)
+            sortedTeam.slice([x], 1)
+            console.log(sortedTeam.slice(x, 1))
+            // console.log((sortedTeam[x][0] == sortedTeam[x - 1][0]))
+        }
+    }
+    console.log(sortedTeam)
+
+    // for (let x in getFinals(data)){
+    //     if (avgGoal.includes(item[x]["Home Team Initials"])){
+    //         console.log(x)
+    //     }
+    // }
     return avgGoal
 };
 
