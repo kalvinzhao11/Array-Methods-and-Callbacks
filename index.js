@@ -178,7 +178,6 @@ function getCountryWins(data, initials) {
 
     /* code here */
     //return the total win and inital of country
-    console.log(getFinals(data))
     let win = 0
     getFinals(data).map(function(item){
         if (item["Home Team Initials"] == initials && item["Home Team Goals"] > item["Away Team Goals"]){
@@ -199,8 +198,21 @@ console.log(getCountryWins(fifaData, "ITA"))
 function getGoals(data) {
 
     /* code here */
-
-
+    // let win = {score: 0}
+    
+    let avgGoal = []
+    const goals = getFinals(data).forEach(function(item, index){
+        // console.log(item)
+        console.log(avgGoal)
+        if (avgGoal.includes(item["Home Team Initials"])){
+            // console.log("hi")
+            let index = data.indexOf(item["Home Team Initials"])
+            console.log(index)
+        } else {
+            return avgGoal.push([item["Home Team Initials"], item["Home Team Goals"], 0])
+        }
+    })
+    return avgGoal
 };
 
 console.log(getGoals(fifaData));
