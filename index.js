@@ -218,18 +218,28 @@ function getGoals(data) {
             return (first[0] < second[0]) ? -1 : 1;
         }
     })
+    // console.log(sortedTeam.length)
+
     for (let x in sortedTeam){
+        // let bee = []
         if (x == 0){
             continue
         }
-        if (sortedTeam[x][0] == sortedTeam[x - 1][0]){
+        else if (sortedTeam[x][0] == sortedTeam[x - 1][0]){
+            // console.log(x)
+            // console.log(sortedTeam[x - 1 ][0])
+            // console.log(sortedTeam[x][0])
             sortedTeam[x - 1 ][1] += sortedTeam[x][1]
             sortedTeam[x - 1 ][2] ++
-            console.log(x)
-            sortedTeam.slice([x], 1)
-            console.log(sortedTeam.slice(x, 1))
+            (sortedTeam.splice(x, 1))
+            // console.log(sortedTeam)
+            // bee.push(sortedTeam)
+            // console.log(bee)
+            // sortedTeam.splice(x, 1)
+            // console.log(sortedTeam.splice(x-1, 1))
             // console.log((sortedTeam[x][0] == sortedTeam[x - 1][0]))
         }
+        
     }
     console.log(sortedTeam)
 
